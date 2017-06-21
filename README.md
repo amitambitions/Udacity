@@ -6,15 +6,17 @@ Lesson outline
 In this lesson you will learn how to read data, select subsets of it and generate useful plots, using pandas and matplotlib. The documentation links below are for your reference.
 
 - Read stock data from CSV files:
-- pandas.DataFrame
-- pandas.read_csv
+  - pandas.DataFrame
+  - pandas.read_csv
+  
 - Select desired rows and columns:
-- Indexing and Slicing Data
-- Gotchas: Label-based slicing conventions
+  - Indexing and Slicing Data
+  - Gotchas: Label-based slicing conventions
+
 - Visualize data by generating plots:
-- Plotting
-- pandas.DataFrame.plot
-- matplotlib.pyplot.plot
+  - Plotting
+  - pandas.DataFrame.plot
+  - matplotlib.pyplot.plot
 
 Couple of points from Lesson one:
 
@@ -28,16 +30,31 @@ data for all the stocks, so are we looking for something like a 3D view here??)
 
 Lesson 2 - Working with multiple stocks
 
+Lesson outline
+Here's an overview of what you'll learn to do in this lesson. Documentation links are for reference.
+
+Read in multiple stocks:
+  - Create an empty pandas.DataFrame with dates as index: pandas.date_range
+  - Drop missing date rows: pandas.DataFrame.dropna
+  - Incrementally join data for each stock: pandas.DataFrame.join
+
+Manipulate stock data:
+  - Index and select data by row (dates) and column (symbols)
+  - Plot multiple stocks at once (still using pandas.DataFrame.plot)
+  - Carry out arithmetic operations across stocks
+
+
 Lesson summary
 
 To read multiple stocks into a single dataframe, you need to:
 - Specify a set of dates using pandas.date_range
 - Create an empty dataframe with dates as index
-- This helps align stock data and orders it by trading date
+  - This helps align stock data and orders it by trading date
 - Read in a reference stock (here SPY) and drop non-trading days using pandas.DataFrame.dropna
 - Incrementally join dataframes using pandas.DataFrame.join
+
 - Once you have multiple stocks, you can:
-- Select a subset of stocks by ticker symbols
-- Slice by row (dates) and column (symbols)
-- Plot multiple stocks at once (still using pandas.DataFrame.plot)
-- Carry out arithmetic operations across stocks, e.g. normalize by the first day's price
+  - Select a subset of stocks by ticker symbols
+  - Slice by row (dates) and column (symbols)
+  - Plot multiple stocks at once (still using pandas.DataFrame.plot)
+  - Carry out arithmetic operations across stocks, e.g. normalize by the first day's price

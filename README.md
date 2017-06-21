@@ -180,3 +180,159 @@ Once you have multiple stocks, you can:
 - Plot multiple stocks at once (still using pandas.DataFrame.plot)
 - Carry out arithmetic operations across stocks, e.g. normalize by the first day's price
 
+
+The power of Numpy
+
+Lesson outline
+If you're familiar with NumPy (esp. the following operations), feel free to skim through this lesson.
+
+Create a NumPy array:
+    - from a pandas dataframe: pandas.DataFrame.values
+    - from a Python sequence: numpy.array
+    - with constant initial values: numpy.ones, numpy.zeros
+    - with random values: numpy.random
+Access array attributes: shape, ndim, size, dtype
+Compute statistics: sum, min, max, mean
+Carry out arithmetic operations: add, subtract, multiply, divide
+Measure execution time: time.time, profile
+Manipulate array elements: Using simple indices and slices, integer arrays, boolean arrays
+
+Some notes from the videos:
+
+- Numpy is a wrapper to numerical libraries
+- panda is a kind of wrapper to the Numpy, pandas creates sort of indexes and column names on
+top of the ndarray elements present beneath
+- let us say we have a dataframe where indexes are dates and the column names are the names of the 
+companies holding those stocks. The actual values are nothing but ndarray (check whats ndarray)
+and this can be fetched from the panda data frame using nd1 = df1.values
+
+https://docs.scipy.org/doc/numpy-1.12.0/reference/arrays.ndarray.html
+
+Notes on notations
+
+- nd1[row, column]
+- nd1[0:3, 1:4] - this can give us a subset of the whole 2d array. So since all these are built
+on top of python, we can think of using slicing as often as we want.
+- nd1[:, 1:4] - all rows
+- we can use negative numbers as python slices supports that. We can start with -1 for the 
+last row and carry from there.
+- to copy elements from one ndarray to another we can use a simple assignment operation.
+we can just say nd1[..] = nd1[...]
+- we can convert various python operations to ndarray. Let us say we want to convert a list
+to a 1D array, then we can simply do like
+- we can access underlying values of the numpy array using.values() method
+
+
+Creating an ndarray from scratch
+
+np.array([1,2,,3])
+- input can be anything which follows a sequence like a list, tuple etc
+
+- for 2d array, just pass sequence of sequences
+np.array([(1,2,3), (4,5,6)])
+
+np.empty(5)
+np.empty((5,5)) - check that we need to pass data in double parenthesis here because
+it wil take the tuple to decide the dimension of the array to be created.
+- note here that by default the values contained in this array will be junk values
+- we can create default values using different functions
+
+np.ones((5,4)) - this will create an array with all 1s
+- default data type will always be floating points
+
+np.ones((5,), dtype=np.int)
+will give new datatypes.
+
+
+- Below statement will generate an array full of random numbers, uniformly sampled from [0.0, 1.0)
+- np.random.random((5,4))
+- by default the numbers are samples from 0 to 1
+- np.random.normal(size=(2,3))
+
+Normal or gaussian distribution is also supported. Need to check how to do this
+- default mean will be 0.0 and standard deviation will be 1.0
+- we can ofcourse change it by providing that as a parameter np.random.normal(50,10, size=(2,3))
+
+randint can be used to generate integers
+- use size for array and rest we know
+
+Array Attributes
+    
+a = np.random.random((5,4))
+a.shape
+this will give the tuple of the size of the array
+
+a.shape[0] - return number of rows
+a.shape[1] - return number of columns
+len(a.shape) - this will give the dimension of the tuple
+
+a.size - will give the total number of elements present
+a.dtype will give the datatype
+a.sum - sum of all elements
+a.sum(axis=0) - sum of all rows
+a.sum(axis=1) - sum of all columns
+a.min(axis=0)
+a.max(axis=1)
+a.mean()
+
+
+
+time.time() - to get the time and we can use this to get the time executed by soem python code
+
+"""Numpy timing comparison."""
+
+import numpy as np
+
+def manual_mean(arr):
+    sum = 0
+    for i in xrange(0, arr.shape[0]):
+        for j in xrange(0, arr.shape[1]):
+            sum += arr[i,j]
+    return sum/arr.size
+    
+def numpy_mean(arr):
+    return arr.mean()
+    
+Numpy is super fast as compared to manual iteration. Why so? Seems like Numpy is a wrapper
+on top of the C code and hence it is faster.
+
+
+a[3,2] - to access elements. first is the row number, second is the column number
+a[0, 1:3] - slicing
+a[:, 0:3:2] - starts at first, stops before second and everytime takes a jump of the last
+value, which is 2 here.
+a[0,0] = 1
+a[0,:] = 2
+a[:,3] = [1,2,3,4,5]
+
+
+
+indices = np.array([1,1,2,3])
+print a[indices]
+
+it will print all these indices
+(this is like passing array of indices to another array)
+
+
+
+a = np.array([(5,10....),(values here too)])
+lets us say we want all values less that the mean
+
+- calculate mean by a.mean()
+- either run a loop, which will of course be more time consuming
+- or use numPy and say print a[a < mean]
+- we can also say
+
+a[a < mean] = mean
+
+
+Arithmetic Operations
+
+- a = np.array[(), ()]
+- 2 * a - will multiply every element by 2 (a new array is created, so need to be careful of what 
+we want here to save some time)
+- similarly division and addition will work
+- a + b of two different arrays (shape should be similar)
+- multi of two different arrays will do it elemnt wise and NOT based on how a matrix multiplication
+happens
+- dot() function can be used for matrix multiplication

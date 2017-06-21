@@ -336,3 +336,49 @@ we want here to save some time)
 - multi of two different arrays will do it elemnt wise and NOT based on how a matrix multiplication
 happens
 - dot() function can be used for matrix multiplication
+
+
+Lesson Satistical analysis of time series
+
+Lesson outline
+Pandas makes it very convenient to compute various statistics on a dataframe:
+
+- Global statistics: mean, median, std, sum, etc. [more]
+- Rolling statistics: rolling_mean, rolling_std, etc. [more]
+
+Specifically, you will compute:
+
+- Bollinger Bands: A way of quantifying how far stock price has deviated from some norm.
+- Daily returns: Day-to-day change in stock price.
+
+df.mean() - if there are multiple columns, then mean will be printed for all of them.
+df.median()
+df.std() - something like deviation from the mean value
+
+- all these functions calculate the result on the whole column and give the summary
+
+Some more notes
+
+Rolling Statistics
+
+- lets say we plot the graph for the whole dates, then we plot the mean for every 20 days, so this
+is something called as rolling statistics. This can be sued by analyst to decide when to buy
+and when to sell
+
+Bollinger Bands
+
+(why does it take 2 standard deviations?? on top and below)
+- rolling mean is provided by pandas not data frames
+
+Daily Returns
+
+- just the simple percentage change
+price[t]/price[t-1] - 1 and then take that in percentages.
+
+Cumulative Returns
+- for the whole year in percentages
+price[t]/price[0] - 1
+
+(Note - we take price at the beginning as that makes sense as we are comparing with respect
+to the starting value)
+
